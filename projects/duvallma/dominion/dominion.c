@@ -683,10 +683,9 @@ int getCost(int cardNumber)
 
 int playCardBaron(int choice1, struct gameState *state, int currentPlayer)
 {
-
   state->numBuys++;//Increase buys by 1!
   if (choice1 > 0) { //Boolean true or going to discard an estate
-      int p = 0;//Iterator for hand!
+      int p = 1;//Iterator for hand!
       int card_not_discarded = 1;//Flag for discard set!
       while(card_not_discarded) {
           if (state->hand[currentPlayer][p] == estate) { //Found an estate card!
