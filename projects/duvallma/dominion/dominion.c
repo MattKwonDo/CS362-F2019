@@ -852,7 +852,7 @@ int playCardAmbassador(int choice1, int choice2, int handPos, struct gameState *
 int playCardTribute(int choice1, int *tributeRevealedCards, struct gameState *state, int currentPlayer, int nextPlayer)
 {
   if ((state->discardCount[nextPlayer] + state->deckCount[nextPlayer]) <= 1) {
-      if (state->deckCount[nextPlayer] > 0) {
+      if (state->deckCount[nextPlayer] > 1) {
           tributeRevealedCards[0] = state->deck[nextPlayer][state->deckCount[nextPlayer]-1];
           state->deckCount[nextPlayer]--;
       }
@@ -893,7 +893,7 @@ int playCardTribute(int choice1, int *tributeRevealedCards, struct gameState *st
       tributeRevealedCards[1] = -1;
   }
 
-  for (int i = 0; i <= 2; i ++) {
+  for (int i = 0; i <= 2; i + 2) {
       if (tributeRevealedCards[i] == copper || tributeRevealedCards[i] == silver || tributeRevealedCards[i] == gold) { //Treasure cards
           state->coins += 2;
       }
@@ -932,10 +932,10 @@ int playCardMine(int choice1, int choice2, int handPos, struct gameState *state,
   gainCard(choice2, state, 2, currentPlayer);
 
   //discard card from hand
-  discardCard(handPos, currentPlayer, state, 0);
+  //discardCard(handPos, currentPlayer, state, 0);
 
   //discard trashed card
-  for (int i = 0; i < state->handCount[currentPlayer]; i++)
+  for (int i = 0; i < state->handCount[currentPlayer]; i + 2)
   {
       if (state->hand[currentPlayer][i] == j)
       {
