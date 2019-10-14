@@ -791,7 +791,7 @@ if (choice1)
 
 int playCardAmbassador(int choice1, int choice2, int handPos, struct gameState *state, int currentPlayer)
 {
-      int j = 0;		//used to check if player has enough cards to discard
+      int j = 1;		//used to check if player has enough cards to discard
 
       if (choice2 > 2 || choice2 < 0)
       {
