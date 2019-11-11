@@ -10,7 +10,7 @@
 void main(int argc, char** argv)
 {
     // set variable states
-printf(‘begin testing gainCard():\n’);
+printf('begin testing gainCard():\n');
 int k[10] = { adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall }; 
 
 
