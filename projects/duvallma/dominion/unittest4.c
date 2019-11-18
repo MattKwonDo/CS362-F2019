@@ -1,3 +1,7 @@
+/*
+unit test for tribute
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -9,6 +13,7 @@
 
 void main(int argc, char** argv)
 {
+        printf("\n***   Mine Test   ***\n");
     // set variable states
 printf('begin testing gainCard():\n');
 int k[10] = { adventurer, council_room, feast, gardens, mine, remodel, smithy, village, tribute, great_hall }; 

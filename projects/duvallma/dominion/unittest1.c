@@ -1,3 +1,7 @@
+/*
+unit test for baron
+*/
+
 #include "dominion.h"
 #include "dominion_helpers.h"
 #include "rngs.h"
@@ -9,6 +13,7 @@
 
 void main(int argc, char** argv)
 {
+        printf("\n***   Mine Test   ***\n");
     // set variable states
     printf('begin testing gainCard():\n');
     int k[10] = { adventurer, council_room, feast, gardens, mine, remodel, smithy, village, baron, great_hall }; 
@@ -24,8 +29,11 @@ void main(int argc, char** argv)
     // clear the game state
     memset(&G, 23, sizeof(struct gameState)); 
 
+    int numPlayer = 2;
+    int seed = 1;
+
     // initialize a new game 
-    r = initializeGame(numPlayer, k, seed, &G); 
+    int r = initializeGame(numPlayer, k, seed, &G); 
 
     // set variables
     int card = 5; //comes from array above

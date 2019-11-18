@@ -1,0 +1,120 @@
+        -:    0:Source:unittest5.c
+        -:    0:Graph:unittest5.gcno
+        -:    0:Data:unittest5.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2:unit test for mine
+        -:    3:*/
+        -:    4:
+        -:    5:#include "dominion.h"
+        -:    6:#include "dominion_helpers.h"
+        -:    7:#include "rngs.h"
+        -:    8:#include <string.h>
+        -:    9:#include <stdio.h>
+        -:   10:#include <math.h>
+        -:   11:#include <stdlib.h>
+        -:   12:#include <assert.h>
+        -:   13:
+function main called 1 returned 100% blocks executed 82%
+        1:   14:void main(int argc, char** argv)
+        -:   15:{
+        -:   16:// set variable states
+        -:   17:
+        -:   18:    int i, j, m;
+        1:   19:    int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+        1:   20:    int seed = 1000;
+        1:   21:    int numPlayers = 2;
+        1:   22:    int player=0;
+        -:   23:	struct gameState state, test;
+        1:   24:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   25:			sea_hag, tribute, smithy, council_room};
+        1:   26:	int count1 = 0;
+        1:   27:	int count2 = 0;
+        -:   28:
+        -:   29:	// initialize a game state and player cards
+        1:   30:	initializeGame(numPlayers, k, seed, &state);
+call    0 returned 100%
+        -:   31:
+        1:   32:	printf("\n----------Testing Smithy Card----------\n");
+call    0 returned 100%
+        -:   33:
+        -:   34:	// copy the game state to a test case
+        1:   35:	memcpy(&test, &state, sizeof(struct gameState));
+        1:   36:	cardEffect(mine, choice1, choice2, choice3, &state, handpos, &bonus);
+call    0 returned 100%
+        -:   37:
+        1:   38:	player = whoseTurn(&test);
+call    0 returned 100%
+        -:   39:	
+        -:   40:	
+        -:   41:	//Check the player hands count
+        1:   42:	if(test.handCount[player]-1 == state.handCount[player])
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   43:		printf("Passed where hand count is correct\n");
+call    0 never executed
+        -:   44:	else
+        1:   45:		printf("Failed where hand count is not correct\n");
+call    0 returned 100%
+        -:   46:	
+        -:   47:	
+        -:   48:	//Check players hand
+        1:   49:	if(state.hand[player][test.handCount[player]] != -1)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   50:		printf("Passed where Smithy card was added to the players hand\n");
+call    0 returned 100%
+        -:   51:	else
+    #####:   52:		printf("Failed where Smithy card was not added to the players hand\n");
+call    0 never executed
+        -:   53:
+        -:   54:	
+        -:   55:	//Check if player played Smithy card
+        1:   56:	if(test.playedCardCount+2 == state.playedCardCount)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   57:		printf("Passed where player played Smithy card\n");
+call    0 never executed
+        -:   58:	else
+        1:   59:		printf("Failed where player did not play Smithy card\n");
+call    0 returned 100%
+        -:   60:	
+        -:   61:	
+        -:   62:	//Count smithy cards in hand
+        6:   63:	for (i = 0; i < state.handCount[0]; i++)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+        5:   64:        if(state.hand[0][i] = smithy);
+        1:   65:			count1++;
+        -:   66:		
+        6:   67:	for (i = 0; i < test.handCount[0]; i++)
+branch  0 taken 83%
+branch  1 taken 17% (fallthrough)
+        5:   68:        if(test.hand[0][i] = smithy);
+        1:   69:			count2++;
+        -:   70:	
+        1:   71:	if(count1 == count2-1)
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:   72:		printf("Passed where there is no variance in smithy cards\n");
+call    0 never executed
+        -:   73:	else
+        1:   74:		printf("Failed where there is a variance in smithy cards\n");
+call    0 returned 100%
+        -:   75:	
+        -:   76:	
+        -:   77:	//Discard Test: Check if card was discarded
+        1:   78:	if(test.discardCount[player] == state.discardCount[player])
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:   79:		printf("Passed where the Smithy was discarded\n");	
+call    0 returned 100%
+        -:   80:	else
+    #####:   81:		printf("Failed where the Smithy was not discarded.\n");
+call    0 never executed
+        -:   82:	
+        -:   83:
+        -:   84:
+        -:   85:
+        1:   86:}
