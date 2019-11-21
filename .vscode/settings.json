@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.tcc": "c",
+        "dominion.h": "c",
+        "bitset": "c"
+    }
+}

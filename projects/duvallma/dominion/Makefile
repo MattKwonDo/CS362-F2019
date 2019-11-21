@@ -35,27 +35,37 @@ randomtestcard1: dominion.o rngs.o
 	gcov -b -f dominion.c >> randomtestresults.out
 	printf "*** END   RandomTestCard1 ***\n" >> randomtestresults.out
 
-randomtestcard2: randomtestcard2.c dominion.o rngs.o
+randomtestcard2: dominion.o rngs.o
+	printf "*** BEGIN RandomTestCard2 ***\n" >> randomtestresults.out
 	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard2 >> randomtestresults.out
+	printf "*** RandomTestCard2 gcov ***\n" >> randomtestresults.out
+	gcov -b -f dominion.c >> randomtestresults.out
+	printf "*** END   RandomTestCard2 ***\n" >> randomtestresults.out
 
-randomtestcard3: randomtestcard3.c dominion.o rngs.o
+randomtestcard3: dominion.o rngs.o
+	printf "*** BEGIN RandomTestCard3 ***\n" >> randomtestresults.out
 	gcc -o randomtestcard3 -g randomtestcard3.c dominion.o rngs.o $(CFLAGS)
+	./randomtestcard3 >> randomtestresults.out
+	printf "*** RandomTestCard3 gcov ***\n" >> randomtestresults.out
+	gcov -b -f dominion.c >> randomtestresults.out
+	printf "*** END   RandomTestCard3 ***\n" >> randomtestresults.out
 
 randomtestresults.out: randomtestcard1.c randomtestcard2.c randomtestcard3.c dominion.o
 	echo "randomtestcard1" >> randomtestresults.out
 	gcc -o randomtestcard1 dominion.c rngs.c randomtestcard1.c $(CFLAGS)
 	randomtestcard1.c >> randomtestresults.out
-	gcov dominion.c -b >> randomtestresults.out
+	gcov dominion.c -b -f >> randomtestresults.out
 
 	echo "randomtestcard2" >> randomtestresults.out
 	gcc -o randomtestcard2 dominion.c rngs.c randomtestcard2.c $(CFLAGS)
 	randomtestcard2.c >> randomtestresults.out
-	gcov dominion.c -b >> randomtestresults.out
+	gcov dominion.c -b -f >> randomtestresults.out
 
 	echo "randomtestcard3" >> randomtestresults.out
 	gcc -o randomtestcard3 dominion.c rngs.c randomtestcard3.c $(CFLAGS)
 	randomtestcard3.c >> randomtestresults.out
-	gcov dominion.c -b >> randomtestresults.out
+	gcov dominion.c -b -f >> randomtestresults.out
 
 testme:
 	gcc -o testme -g testme.c $(CFLAGS)

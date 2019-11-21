@@ -22,7 +22,7 @@ int main()
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                  minion, tribute, village, baron, great_hall};
 
-   for (int i = 0; i < tests; i++)
+    for (int i = 0; i < tests; i++)
     {
         printf("\n*** Begin Test %d / %d ***\n", i+1, tests);
         memset(&state, 23, sizeof(struct gameState));
@@ -49,7 +49,7 @@ int main()
         {
             printf("Pass: numBuys incremented\n");
         }
-        else
+        else if (state.numBuys != test.numBuys + 1)
         {
             printf("Fail: numBuys NOT incremented\n");
         }
