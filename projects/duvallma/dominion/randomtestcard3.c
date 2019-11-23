@@ -14,7 +14,7 @@ int main()
     srand(time(NULL));
 
     struct gameState state, test;
-    int tests = 50,
+    int tests = 500,
     seed = 30,
     handPos = 4, 
     currentPlayer = 0,
