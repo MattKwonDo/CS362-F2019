@@ -18,7 +18,7 @@ int main()
     seed = 30,
     handPos = 4, 
     currentPlayer = 0,
-    nextPlayer = 0,
+    nextPlayer = 1,
     numPlayers = 2,
     cardsInHands = 5;
 
@@ -100,12 +100,46 @@ int main()
 
         int tributeRevealedCards[2] = {-1, -1};
 
-        playCardTribute(choice1, &tributeRevealedCards, &state, currentPlayer, nextPlayer);
-        // if () {
-
-        // }
+        playCardTribute(choice1, tributeRevealedCards, &state, currentPlayer, nextPlayer);
+        
 
 
+
+        if (state.numActions > test.numActions)
+        {
+            printf("Pass: numActions incremented\n");
+        }
+        else
+        {
+            printf("Fail: numActions NOT incremented\n");
+        }
+
+        if (state.coins > test.coins)
+        {
+            printf("Pass: coins added\n");
+        }
+        else
+        {
+            printf("Fail: coins NOT added\n");
+        }
+        
+        if (state.discardCount[currentPlayer] == test.discardCount[currentPlayer] == 5)
+        {
+            printf("Pass: 5 cards discarded\n");
+        }
+        else
+        {
+            printf("Fail: 5 cards NOT discarded\n");
+        }
+
+        if (state.handCount[currentPlayer] == 4)
+        {
+            printf("Pass: 4 cards drawn\n");
+        }
+        else
+        {
+            printf("Fail: 4 cards NOT drawn\n");
+        }
     }
 
     return 0;
