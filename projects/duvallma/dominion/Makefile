@@ -51,21 +51,7 @@ randomtestcard3: dominion.o rngs.o
 	gcov -b -f dominion.c >> randomtestresults.out
 	printf "*** END   RandomTestCard3 ***\n" >> randomtestresults.out
 
-randomtestresults.out: randomtestcard1.c randomtestcard2.c randomtestcard3.c dominion.o
-	echo "randomtestcard1" >> randomtestresults.out
-	gcc -o randomtestcard1 dominion.c rngs.c randomtestcard1.c $(CFLAGS)
-	randomtestcard1.c >> randomtestresults.out
-	gcov dominion.c -b -f >> randomtestresults.out
-
-	echo "randomtestcard2" >> randomtestresults.out
-	gcc -o randomtestcard2 dominion.c rngs.c randomtestcard2.c $(CFLAGS)
-	randomtestcard2.c >> randomtestresults.out
-	gcov dominion.c -b -f >> randomtestresults.out
-
-	echo "randomtestcard3" >> randomtestresults.out
-	gcc -o randomtestcard3 dominion.c rngs.c randomtestcard3.c $(CFLAGS)
-	randomtestcard3.c >> randomtestresults.out
-	gcov dominion.c -b -f >> randomtestresults.out
+randomtestresults: randomtestcard1 randomtestcard2 randomtestcard3
 
 testme:
 	gcc -o testme -g testme.c $(CFLAGS)
