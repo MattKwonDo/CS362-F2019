@@ -53,15 +53,12 @@ int main()
         salvager,
         sea_hag,
         treasure_map};
-
-        // victory cards: estate - 1, duchy - 2, province - 3, gardens - 10, great_hall - 16
-        // treasure cards: copper - 4, silver - 5, gold - 6
-
     for (int i = 0; i < tests; i++)
     {
         printf("\n*** Begin Test %d / %d ***\n", i+1, tests);
         memset(&state, 23, sizeof(struct gameState));
 
+        //choice1 not actually needed in the function....
         int choice1 = (rand() % 2); // if rand returns even, then zero, no discard; if odd, then 1 and discard the card, gain 4
         printf("choice1: %d\n", choice1);
 
@@ -77,8 +74,6 @@ int main()
             state.hand[currentPlayer][i] = kAll[card];
         }
         
-        
-        // Generate 5 random cards for player 2's hand
         for (i = 0; i < 5; i++)
         {
             card = rand() % 27;
