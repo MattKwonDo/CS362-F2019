@@ -10,7 +10,7 @@
 
 int main()
 {
-	printf("randomtestcard1: Baron\n");
+	printf("randomtestcard1: Minion\n");
     srand(time(NULL));
 
     struct gameState state, test;

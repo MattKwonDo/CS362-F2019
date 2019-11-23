@@ -10,19 +10,52 @@
 
 int main()
 {
-	printf("randomtestcard1: Baron\n");
+	printf("randomtestcard1: Tribute\n");
     srand(time(NULL));
 
     struct gameState state, test;
-    int tests = 500,
+    int tests = 50,
     seed = 30,
     handPos = 4, 
-    player = 0,
+    currentPlayer = 0,
+    nextPlayer = 0,
     numPlayers = 2,
     cardsInHands = 5;
 
     int k[10] = {adventurer, council_room, feast, gardens, mine,
                  minion, tribute, village, baron, great_hall};
+
+    int kAll[27] = {
+        curse,
+        estate,
+        duchy,
+        province,
+        copper,
+        silver,
+        gold,
+        adventurer,
+        council_room,
+        feast,
+        gardens,
+        mine,
+        remodel,
+        smithy,
+        village,
+        baron,
+        great_hall,
+        minion,
+        steward,
+        tribute,
+        ambassador,
+        cutpurse,
+        embargo,
+        outpost,
+        salvager,
+        sea_hag,
+        treasure_map};
+
+        // victory cards: estate - 1, duchy - 2, province - 3, gardens - 10, great_hall - 16
+        // treasure cards: copper - 4, silver - 5, gold - 6
 
     for (int i = 0; i < tests; i++)
     {
@@ -31,25 +64,46 @@ int main()
 
         int choice1 = (rand() % 2); // if rand returns even, then zero, no discard; if odd, then 1 and discard the card, gain 4
         printf("choice1: %d\n", choice1);
-        int choice2 = !choice1;
-        printf("choice2: %d\n", choice2);
 
         printf("initializeGame\n");
         initializeGame(numPlayers, k, seed, &state);
 
+        
+        int card, i;
 
-        state.handCount[player] = cardsInHands;
-        state.hand[player][4] = minion;
-        state.hand[player][3] = (rand() % 2) == 0 ? copper : estate; //if rand returns even, copper; if odd, estate
-        printf("2nd to last card: %d\n", state.hand[player][3]);
+        for (i = 0; i < 4; i++)
+        {
+            card = (rand() % 27);
+            state.hand[currentPlayer][i] = kAll[card];
+        }
+        
+        
+        // Generate 5 random cards for player 2's hand
+        for (i = 0; i < 5; i++)
+        {
+            card = rand() % 27;
+            state.hand[nextPlayer][i] = kAll[card];
+        }
+
+        for (i = 0; i < state.deckCount[nextPlayer]; i++)
+        {
+            card = rand() % 27;
+            state.deck[nextPlayer][i] = card;
+        }
+
+        state.handCount[currentPlayer] = cardsInHands;
+        state.handCount[nextPlayer] = cardsInHands;
+        state.hand[currentPlayer][4] = tribute;
 
 		printf("memcpy\n");
         memcpy(&test, &state, sizeof(struct gameState));
 
+        int tributeRevealedCards[2] = {-1, -1};
 
-        playCardMinion(choice1, choice2, &state, player, handPos);
+        playCardTribute(choice1, &tributeRevealedCards, &state, currentPlayer, nextPlayer);
+        // if () {
 
-        if
+        // }
 
 
     }
