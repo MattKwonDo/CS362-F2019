@@ -43,7 +43,9 @@ int main()
         memcpy(&test, &state, sizeof(struct gameState));
 
 
-        playCardBaron(choice1, &state, player);
+// matianc function signature: 
+// int playCardBaron(int card, int choice1, struct gameState *state, int handPos, int currentPlayer)
+        playCardBaron(baron, choice1, &state, 5, player);
 
         if (state.numBuys == test.numBuys + 1) // numBuys should be incremented
         {

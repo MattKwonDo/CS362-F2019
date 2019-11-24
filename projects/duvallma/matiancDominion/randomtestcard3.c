@@ -10,7 +10,7 @@
 
 int main()
 {
-	printf("randomtestcard1: Tribute\n");
+	printf("randomtestcard3: Tribute\n");
     srand(time(NULL));
 
     struct gameState state, test;
@@ -94,11 +94,11 @@ int main()
         memcpy(&test, &state, sizeof(struct gameState));
 
         int tributeRevealedCards[2] = {-1, -1};
-
-        playCardTribute(choice1, tributeRevealedCards, &state, currentPlayer, nextPlayer);
         
+// matianc function signature: 
+// int playCardTribute(int *tributeRevealedCards, struct gameState *state, int currentPlayer, int nextPlayer)
 
-
+        playCardTribute(tributeRevealedCards, &state, currentPlayer, nextPlayer);
 
         if (state.numActions > test.numActions)
         {

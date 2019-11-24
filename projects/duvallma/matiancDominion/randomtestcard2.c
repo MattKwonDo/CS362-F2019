@@ -10,7 +10,7 @@
 
 int main()
 {
-	printf("randomtestcard1: Minion\n");
+	printf("randomtestcard2: Minion\n");
     srand(time(NULL));
 
     struct gameState state, test;
@@ -46,8 +46,9 @@ int main()
 		printf("memcpy\n");
         memcpy(&test, &state, sizeof(struct gameState));
 
-
-        playCardMinion(choice1, choice2, &state, player, handPos);
+// matianc function signature: 
+// int playCardMinion(int card, int choice1, int choice2, struct gameState *state, int handPos, int currentPlayer)
+        playCardMinion(minion, choice1, choice2, &state, handPos, player);
 
         if (state.numActions == test.numActions + 1) // numBuys should be incremented
         {

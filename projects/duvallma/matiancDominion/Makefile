@@ -27,8 +27,6 @@ player: player.c interface.o
 
 all: playdom player
 
-
-
 unittest1: unittest1.c dominion.o
 	gcc -o unittest1 dominion.c rngs.c unittest1.c $(CFLAGS)
 	./unittest1
