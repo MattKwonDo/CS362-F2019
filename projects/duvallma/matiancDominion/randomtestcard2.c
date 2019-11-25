@@ -81,7 +81,7 @@ int main()
         }
         else if (choice2)
         {
-            if (state.discardCount[player] == test.discardCount[player] == 5)
+            if (state.discardCount[player] == test.discardCount[player] + 5)
             {
                 printf("Pass: 5 cards discarded\n");
             }
